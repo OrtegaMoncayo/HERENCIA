@@ -24,13 +24,17 @@ public class Main {
         d.setCedula("1003088778");
         d.setTitulo("Electrico");
 //        System.out.println(d.imprimir());
-        
-        
-        Administrativo a=new Administrativo
-        (1, "SECRETARIA", "SOFTWARE", 2, "JULIANA", "PEREZ", "13746456388", 23875528, "","", "","");
-        System.out.println(a.imprimir());
-        
-        Estudiante e=new Estudiante(1, 235563, "","");
+
+        Administrativo a = new Administrativo(1, "SECRETARIA", "SOFTWARE", 2, "JULIANA", "PEREZ", "13746456388", 23875528, "", "", "", "");
+//        System.out.println(a.imprimir());
+        //UPCASTING: CREAR OBJETOS DE LA CLASE PADRE
+        //USANDO CONSTRUCTORES DE LA CLASE HIJAS
+        Persona pe = new Estudiante();
+        pe.setNombre("PEPITO");
+        pe.setApellido("DIAZ");
+        pe.setCedula("345676543");
+        //DOWNCASTING CAMBIAR EL TIPO DE DATO A UN OBJETO
+        Estudiante e = (Estudiante) pe;
         System.out.println(e.imprimir());
 
     }

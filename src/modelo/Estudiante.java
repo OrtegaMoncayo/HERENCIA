@@ -76,7 +76,7 @@ public class Estudiante extends Persona {
                 + "CORREO ELECTRONICO" + getCorreoElectrinico() + "\n"
                 + "SEXO:" + getSexo() + "\n"
                 + "FECHA DE NACIMIENTO:" + getFechaNacimiento() + "\n"
-                + "--------DATOS DE PERSONA----------\n"
+                + "--------DATOS DE ESTUDIANTE----------\n"
                 + "Id ESTUDIANTE:" + getIdEStudiante() + "\n"
                 + "NUMERO DE MATRICULA:" + getNumeroMatriculo()+ "\n"
                 + "HORARIO DE CLASES:" + getHorario() + "\n"

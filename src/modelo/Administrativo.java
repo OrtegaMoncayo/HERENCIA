@@ -65,7 +65,7 @@ public class Administrativo extends Persona {
                 + "CORREO ELECTRONICO" + getCorreoElectrinico() + "\n"
                 + "SEXO:" + getSexo() + "\n"
                 + "FECHA DE NACIMIENTO:" + getFechaNacimiento() + "\n"
-                + "--------DATOS DE PERSONA----------\n"
+                + "--------DATOS DE Administrativo----------\n"
                 + "Id Administrativo:" + getIdAdministrativo() + "\n"
                 + "NOMBRE:" + getCargo() + "\n"
                 + "APELLIDO:" + getArea() + "\n";
