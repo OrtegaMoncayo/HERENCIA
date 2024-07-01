@@ -68,12 +68,12 @@ public class Cuenta {
     }
 
     public String imprimir() {
-        return "--------DATOS DE DOCENTES----------\n"
-                + "Id:" + getSaldo() + "\n"
-                + "NOMBRE:" + getNumeroConsignaciones() + "\n"
-                + "APELLIDO:" + getNumeroRetiros() + "\n"
-                + "CEDULA:" + getTasaAnual() + "\n"
-                + "TELEFONO:" + getComicionMensual() + "\n";
+        return "--------CUENTA----------\n"
+                + "SALDO:" + getSaldo() + "\n"
+                + "N° de consignaciones:" + getNumeroConsignaciones() + "\n"
+                + "N° de retiros:" + getNumeroRetiros() + "\n"
+                + "Tasa anual:" + getTasaAnual() + "\n"
+                + "omicion mansual:" + getComicionMensual() + "\n";
 
     }
 
@@ -92,4 +92,15 @@ public class Cuenta {
         }
 
     }
+
+    public void calcularInteresMensual() {
+        float interesMensual = (float) ((getTasaAnual() / 12) * getSaldo() / 100);
+    }
+
+    public void extroctoMensual() {
+        setSaldo(getSaldo() - getComicionMensual());
+        calcularInteresMensual();
+        setComicionMensual(0);
+    }
+
 }
