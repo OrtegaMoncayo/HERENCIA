@@ -15,6 +15,10 @@ public class CuentaCorriente extends Cuenta {
     public CuentaCorriente() {
     }
 
+    public CuentaCorriente(double sobregiro) {
+        this.sobregiro = sobregiro;
+    }
+
     public CuentaCorriente(double sobregiro, double saldo, int numeroConsignaciones, double comicionMensual, int numeroRetiros, double tasaAnual) {
         super(saldo, numeroConsignaciones, comicionMensual, numeroRetiros, tasaAnual);
         this.sobregiro = sobregiro;
@@ -28,43 +32,52 @@ public class CuentaCorriente extends Cuenta {
         this.sobregiro = sobregiro;
     }
 
-    public void consigna(double cantidad) {
+
+
+    public void consigna(double valorDepositar) {
         if (getSobregiro() > 0) {
-            if (cantidad >= getSobregiro()) {
-                setSaldo(getSaldo() + (cantidad - getSobregiro()));
-                setSobregiro(0);
+            if (valorDepositar < getSobregiro()) {
+                setSobregiro((getSobregiro() - valorDepositar));
+                
             } else {
-                setSobregiro((getSobregiro() - cantidad));
+                double saldo=valorDepositar-getSobregiro();
+                setSaldo(saldo);
             }
         } else {
-            consigna(cantidad);
+            super.deposito(valorDepositar);
         }
     }
-     public String imprimir() {
-        return "--------CUENTA CORRIENTE----------\n"
-                + "Saldo de cuenta:" + getSaldo() + "\n"
+
+    @Override
+    public void retiro(double valorRetirar) {
+        if (valorRetirar < getSaldo()) {
+            super.retiro(valorRetirar);
+
+        } else {
+            setSobregiro(getSobregiro() + (valorRetirar - getSaldo()));
+            setSaldo(0);
+            setNumeroRetiros(getNumeroRetiros() + 1);
+        }
+    }
+
+    @Override
+    public void extroctoMensual() {
+        if (getNumeroRetiros() > 4) {
+            setComicionMensual(getComicionMensual() + (getNumeroRetiros() - 4) * 1000);
+        }
+        super.extroctoMensual();
+    }
+        @Override
+    public String imprimir() {
+            System.out.println( """
+               --------CUENTA CORRIENTE----------
+               Saldo de cuenta:""" + getSaldo() + "\n"
                 + "Número de consignacion:" + getNumeroConsignaciones() + "\n"
                 + "N° retiro:" + getNumeroRetiros() + "\n"
                 + "Tasa anual:" + getTasaAnual() + "\n"
                 + "Comocion mensual:" + getComicionMensual() + "\n"
-                + "Sobregiro:" + getSobregiro()+ "\n";
+                + "Sobregiro:" + getSobregiro() + "\n");
+            return null;
 
-    }
-
-    public void retiro(double cantidad) {
-        if (cantidad <= getSaldo()) {
-            retiro(cantidad);
-
-        } else {
-            setSobregiro(getSobregiro() + (cantidad - getSaldo()));
-            setSaldo(0);
-            setNumeroRetiros(getNumeroRetiros()+1);
-        }
-    }
-     public void extroctoMensual(){
-        if (getNumeroRetiros()>4){
-            setComicionMensual(getComicionMensual()+(getNumeroRetiros()-4)*1000);
-        }
-        extroctoMensual();
     }
 }

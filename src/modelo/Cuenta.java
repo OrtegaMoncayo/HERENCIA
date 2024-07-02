@@ -66,17 +66,6 @@ public class Cuenta {
     public void setTasaAnual(double tasaAnual) {
         this.tasaAnual = tasaAnual;
     }
-
-    public String imprimir() {
-        return "--------CUENTA----------\n"
-                + "SALDO:" + getSaldo() + "\n"
-                + "N° de consignaciones:" + getNumeroConsignaciones() + "\n"
-                + "N° de retiros:" + getNumeroRetiros() + "\n"
-                + "Tasa anual:" + getTasaAnual() + "\n"
-                + "omicion mansual:" + getComicionMensual() + "\n";
-
-    }
-
     public void deposito(double valorDepositar) {
         setSaldo(getSaldo() + valorDepositar);
         setNumeroConsignaciones(getNumeroConsignaciones() + 1);
@@ -93,14 +82,29 @@ public class Cuenta {
 
     }
 
-    public void calcularInteresMensual() {
-        float interesMensual = (float) ((getTasaAnual() / 12) * getSaldo() / 100);
+    public double calcularInteresMensual() {
+        double valorRendimiento = 0.00;
+        valorRendimiento = ((getTasaAnual() / 12) * getSaldo() / 100);
+        return valorRendimiento;
     }
 
     public void extroctoMensual() {
-        setSaldo(getSaldo() - getComicionMensual());
+        double interes = this.calcularInteresMensual();
+        setSaldo(getSaldo() - getComicionMensual() + interes);
         calcularInteresMensual();
         setComicionMensual(0);
+    }
+    
+      public String imprimir() {
+      
+          System.out.println("--------CUENTA----------\n"
+                + "SALDO:" + getSaldo() + "\n"
+                + "N° de consignaciones:" + getNumeroConsignaciones() + "\n"
+                + "N° de retiros:" + getNumeroRetiros() + "\n"
+                + "Tasa anual:" + getTasaAnual() + "\n"
+                + "omicion mansual:" + getComicionMensual() + "\n");
+        return null;
+
     }
 
 }

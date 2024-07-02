@@ -15,6 +15,10 @@ public class CuentaAhorro extends Cuenta {
     public CuentaAhorro() {
     }
 
+    public CuentaAhorro(boolean activa) {
+        this.activa = activa;
+    }
+
     public CuentaAhorro(boolean activa, double saldo, int numeroConsignaciones, double comicionMensual, int numeroRetiros, double tasaAnual) {
         super(saldo, numeroConsignaciones, comicionMensual, numeroRetiros, tasaAnual);
         this.activa = activa;
@@ -28,50 +32,56 @@ public class CuentaAhorro extends Cuenta {
         this.activa = activa;
     }
 
-    public String imprimir() {
-        return "--------CUENTA DE AHORRO----------\n"
-                + "Saldo cuenta:" + getSaldo() + "\n"
-                + "Número de consignaciones:" + getNumeroConsignaciones() + "\n"
-                + "Número de retiros:" + getNumeroRetiros() + "\n"
-                + "Tasa anual:" + getTasaAnual() + "\n"
-                + "Comisión mensual:" + getComicionMensual() + "\n"
-                + "Cuenta activa:" + getActiva() + "\n";
-
-    }
-
     public void comprobarCuenta() {
-        setActiva(getSaldo() >= 10000);
-        if (getActiva()) {
+        if (getSaldo() >= 10000) {
+            setActiva(true);
             System.out.println("La cuenta esta activa");
         } else {
+            setActiva(false);
             System.out.println("La cuenta esta inactiva");
         }
 
     }
 
-    public void consignar(double cantidad) {
-        if (getActiva()) {
-            consignar(cantidad);
-        } else {
-            System.out.println("La cuenta está inactiva. No se puede consignar dinero");
-        }
-
-    }
-
+    @Override
     public void retiro(double valorRetirar) {
         if (getActiva()) {
-            retiro(valorRetirar);
+            super.retiro(valorRetirar);
+            comprobarCuenta();
         } else {
-            System.out.println("");
+            System.out.println("No se puede retirar dinero");
         }
+    }
+
+    public void consigna(double valorDepositar) {
+        if (getActiva()) {
+            super.deposito(valorDepositar);
+            comprobarCuenta();
+        } else {
+            System.out.println("La cuenta está inactiva. ");
+        }
+    }
+
+    @Override
+    public void extroctoMensual() {
+        if (getNumeroRetiros() > 4) {
+            setComicionMensual(getComicionMensual() + (getNumeroRetiros() - 4) * 1000);
+        }
+        super.extroctoMensual();
         comprobarCuenta();
     }
-    public void extroctoMensual(){
-        if (getNumeroRetiros()>4){
-            setComicionMensual(getComicionMensual()+(getNumeroRetiros()-4)*1000);
-        }
-       
-        comprobarCuenta();
+
+    @Override
+    public String imprimir() {
+        System.out.println("""
+                            --------CUENTA DE AHORRO----------
+                            Cuenta activa:""" + getActiva() + "\n"
+                + "Saldo cuenta:" + getSaldo() + "\n"
+                + "Número de consignaciones:" + getNumeroConsignaciones() + "\n"
+                + "Número de retiros:" + getNumeroRetiros() + "\n"
+                + "Tasa anual:" + getTasaAnual() + "\n"
+                + "Comisión mensual:" + getComicionMensual() + "\n");
+        return null;
     }
 
 }
