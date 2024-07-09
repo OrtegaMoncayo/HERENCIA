@@ -7,7 +7,7 @@ package vista;
 import modelo.Administrativo;
 import modelo.Docente;
 import modelo.Estudiante;
-import modelo.Persona;
+import modelo.Personas;
 
 /**
  *
@@ -16,20 +16,20 @@ import modelo.Persona;
 public class Main {
 
     public static void main(String[] args) {
-        Persona p = new Persona();
+        Personas p = new Personas();
         Docente d = new Docente();
-        d.setIdPersona(1);
+        d.setIdPersonas(1);
         d.setNombre("Richar");
         d.setApellido("Ortega");
         d.setCedula("1003088778");
         d.setTitulo("Electrico");
 //        System.out.println(d.imprimir());
 
-        Administrativo a = new Administrativo(1, "SECRETARIA", "SOFTWARE", 2, "JULIANA", "PEREZ", "13746456388", 23875528, "", "", "", "");
+//        Administrativo a = new Administrativo(1, "SECRETARIA", "SOFTWARE", 2, "JULIANA", "PEREZ", "13746456388", 23875528, "", "", "", "");
 //        System.out.println(a.imprimir());
         //UPCASTING: CREAR OBJETOS DE LA CLASE PADRE
         //USANDO CONSTRUCTORES DE LA CLASE HIJAS
-        Persona pe = new Estudiante();
+        Personas pe = new Estudiante();
         pe.setNombre("PEPITO");
         pe.setApellido("DIAZ");
         pe.setCedula("345676543");

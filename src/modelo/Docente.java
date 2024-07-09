@@ -8,7 +8,7 @@ package modelo;
  *
  * @author 59397
  */
-public class Docente extends Persona {
+public class Docente extends Personas {
 
     private int idDocente;
     private String especilizacion;
@@ -27,14 +27,16 @@ public class Docente extends Persona {
         this.escalaSalarial = escalaSalarial;
     }
 
-    public Docente(int idDocente, String especilizacion, String titulo, String registroSenescyt, String escalaSalarial, int idPersona, String nombre, String apellido, String cedula, int telefono, String direccion, String correoElectrinico, String sexo, String fechaNacimiento) {
-        super(idPersona, nombre, apellido, cedula, telefono, direccion, correoElectrinico, sexo, fechaNacimiento);
+    public Docente(int idDocente, String especilizacion, String titulo, String registroSenescyt, String escalaSalarial, int idPersonas, String nombre, String apellido, String cedula, String direccion, String correoElectronico, String sexo, String fechaNacimiento, int telefono, String usuario, String clave) {
+        super(idPersonas, nombre, apellido, cedula, direccion, correoElectronico, sexo, fechaNacimiento, telefono, usuario, clave);
         this.idDocente = idDocente;
         this.especilizacion = especilizacion;
         this.titulo = titulo;
         this.registroSenescyt = registroSenescyt;
         this.escalaSalarial = escalaSalarial;
     }
+
+   
 
     public int getIdDocente() {
         return idDocente;
@@ -78,13 +80,13 @@ public class Docente extends Persona {
 
     public String imprimir() {
         return "--------DATOS DE DOCENTES----------\n"
-                + "Id:" + getIdPersona() + "\n"
+                + "Id:" + getIdPersonas() + "\n"
                 + "NOMBRE:" + getNombre() + "\n"
                 + "APELLIDO:" + getApellido() + "\n"
                 + "CEDULA:" + getCedula() + "\n"
                 + "TELEFONO:" + getTelefono() + "\n"
                 + "DIRECCION:" + getDireccion() + "\n"
-                + "CORREO ELECTRONICO" + getCorreoElectrinico() + "\n"
+                + "CORREO ELECTRONICO" + getCorreoElectronico() + "\n"
                 + "SEXO:" + getSexo() + "\n"
                 + "FECHA DE NACIMIENTO:" + getFechaNacimiento() + "\n"
                 +"--------DATOS DE DOCENTES----------\n"

@@ -8,7 +8,7 @@ package modelo;
  *
  * @author 59397
  */
-public class Estudiante extends Persona {
+public class Estudiante extends Personas {
 
     private int idEStudiante;
     private int numeroMatriculo;
@@ -25,8 +25,8 @@ public class Estudiante extends Persona {
         this.jornada = jornada;
     }
 
-    public Estudiante(int idEStudiante, int numeroMatriculo, String horario, String jornada, int idPersona, String nombre, String apellido, String cedula, int telefono, String direccion, String correoElectrinico, String sexo, String fechaNacimiento) {
-        super(idPersona, nombre, apellido, cedula, telefono, direccion, correoElectrinico, sexo, fechaNacimiento);
+    public Estudiante(int idEStudiante, int numeroMatriculo, String horario, String jornada, int idPersonas, String nombre, String apellido, String cedula, String direccion, String correoElectronico, String sexo, String fechaNacimiento, int telefono, String usuario, String clave) {
+        super(idPersonas, nombre, apellido, cedula, direccion, correoElectronico, sexo, fechaNacimiento, telefono, usuario, clave);
         this.idEStudiante = idEStudiante;
         this.numeroMatriculo = numeroMatriculo;
         this.horario = horario;
@@ -65,15 +65,18 @@ public class Estudiante extends Persona {
         this.jornada = jornada;
     }
 
+   
+   
+
     public String imprimir() {
         return "--------DATOS DE PERSONA----------\n"
-                + "Id:" + getIdPersona() + "\n"
+                + "Id:" + getIdPersonas() + "\n"
                 + "NOMBRE:" + getNombre() + "\n"
                 + "APELLIDO:" + getApellido() + "\n"
                 + "CEDULA:" + getCedula() + "\n"
                 + "TELEFONO:" + getTelefono() + "\n"
                 + "DIRECCION:" + getDireccion() + "\n"
-                + "CORREO ELECTRONICO" + getCorreoElectrinico() + "\n"
+                + "CORREO ELECTRONICO" + getCorreoElectronico() + "\n"
                 + "SEXO:" + getSexo() + "\n"
                 + "FECHA DE NACIMIENTO:" + getFechaNacimiento() + "\n"
                 + "--------DATOS DE ESTUDIANTE----------\n"

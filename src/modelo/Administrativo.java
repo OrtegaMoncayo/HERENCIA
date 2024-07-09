@@ -8,7 +8,7 @@ package modelo;
  *
  * @author 59397
  */
-public class Administrativo extends Persona {
+public class Administrativo extends Personas{
 
     private int idAdministrativo;
     private String cargo;
@@ -23,12 +23,14 @@ public class Administrativo extends Persona {
         this.area = area;
     }
 
-    public Administrativo(int idAdministrativo, String cargo, String area, int idPersona, String nombre, String apellido, String cedula, int telefono, String direccion, String correoElectrinico, String sexo, String fechaNacimiento) {
-        super(idPersona, nombre, apellido, cedula, telefono, direccion, correoElectrinico, sexo, fechaNacimiento);
+    public Administrativo(int idAdministrativo, String cargo, String area, int idPersonas, String nombre, String apellido, String cedula, String direccion, String correoElectronico, String sexo, String fechaNacimiento, int telefono, String usuario, String clave) {
+        super(idPersonas, nombre, apellido, cedula, direccion, correoElectronico, sexo, fechaNacimiento, telefono, usuario, clave);
         this.idAdministrativo = idAdministrativo;
         this.cargo = cargo;
         this.area = area;
     }
+
+  
 
     public int getIdAdministrativo() {
         return idAdministrativo;
@@ -56,13 +58,13 @@ public class Administrativo extends Persona {
 
     public String imprimir() {
         return "--------DATOS DE PERSONA----------\n"
-                + "Id:" + getIdPersona() + "\n"
+                + "Id:" + getIdPersonas() + "\n"
                 + "NOMBRE:" + getNombre() + "\n"
                 + "APELLIDO:" + getApellido() + "\n"
                 + "CEDULA:" + getCedula() + "\n"
                 + "TELEFONO:" + getTelefono() + "\n"
                 + "DIRECCION:" + getDireccion() + "\n"
-                + "CORREO ELECTRONICO" + getCorreoElectrinico() + "\n"
+                + "CORREO ELECTRONICO" + getCorreoElectronico() + "\n"
                 + "SEXO:" + getSexo() + "\n"
                 + "FECHA DE NACIMIENTO:" + getFechaNacimiento() + "\n"
                 + "--------DATOS DE Administrativo----------\n"
