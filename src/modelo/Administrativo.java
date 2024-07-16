@@ -13,14 +13,16 @@ public class Administrativo extends Personas{
     private int idAdministrativo;
     private String cargo;
     private String area;
+    private int idPersonas;
 
     public Administrativo() {
     }
 
-    public Administrativo(int idAdministrativo, String cargo, String area) {
+    public Administrativo(int idAdministrativo, String cargo, String area,int idPersonas) {
         this.idAdministrativo = idAdministrativo;
         this.cargo = cargo;
         this.area = area;
+        this.idPersonas=idPersonas;
     }
 
     public Administrativo(int idAdministrativo, String cargo, String area, int idPersonas, String nombre, String apellido, String cedula, String direccion, String correoElectronico, String sexo, String fechaNacimiento, int telefono, String usuario, String clave) {
@@ -28,6 +30,7 @@ public class Administrativo extends Personas{
         this.idAdministrativo = idAdministrativo;
         this.cargo = cargo;
         this.area = area;
+        this.idPersonas=idPersonas;
     }
 
   
@@ -56,9 +59,17 @@ public class Administrativo extends Personas{
         this.area = area;
     }
 
+    public int getIdPersonas() {
+        return idPersonas;
+    }
+
+    public void setIdPersonas(int idPersonas) {
+        this.idPersonas = idPersonas;
+    }
+    
+
     public String imprimir() {
         return "--------DATOS DE PERSONA----------\n"
-                + "Id:" + getIdPersonas() + "\n"
                 + "NOMBRE:" + getNombre() + "\n"
                 + "APELLIDO:" + getApellido() + "\n"
                 + "CEDULA:" + getCedula() + "\n"
@@ -68,7 +79,6 @@ public class Administrativo extends Personas{
                 + "SEXO:" + getSexo() + "\n"
                 + "FECHA DE NACIMIENTO:" + getFechaNacimiento() + "\n"
                 + "--------DATOS DE Administrativo----------\n"
-                + "Id Administrativo:" + getIdAdministrativo() + "\n"
                 + "NOMBRE:" + getCargo() + "\n"
                 + "APELLIDO:" + getArea() + "\n";
     }

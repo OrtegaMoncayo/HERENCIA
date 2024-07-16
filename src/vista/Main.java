@@ -5,6 +5,8 @@
 package vista;
 
 import modelo.Administrativo;
+import modelo.CuentaAhorro;
+import modelo.CuentaCorriente;
 import modelo.Docente;
 import modelo.Estudiante;
 import modelo.Personas;
@@ -16,27 +18,27 @@ import modelo.Personas;
 public class Main {
 
     public static void main(String[] args) {
-        Personas p = new Personas();
-        Docente d = new Docente();
-        d.setIdPersonas(1);
-        d.setNombre("Richar");
-        d.setApellido("Ortega");
-        d.setCedula("1003088778");
-        d.setTitulo("Electrico");
-//        System.out.println(d.imprimir());
 
-//        Administrativo a = new Administrativo(1, "SECRETARIA", "SOFTWARE", 2, "JULIANA", "PEREZ", "13746456388", 23875528, "", "", "", "");
-//        System.out.println(a.imprimir());
-        //UPCASTING: CREAR OBJETOS DE LA CLASE PADRE
-        //USANDO CONSTRUCTORES DE LA CLASE HIJAS
-        Personas pe = new Estudiante();
-        pe.setNombre("PEPITO");
-        pe.setApellido("DIAZ");
-        pe.setCedula("345676543");
-        //DOWNCASTING CAMBIAR EL TIPO DE DATO A UN OBJETO
-        Estudiante e = (Estudiante) pe;
-        System.out.println(e.imprimir());
-
+//        Cuenta c = new Cuenta();
+//        c.setSaldo(10000);
+//        c.setNumeroConsignaciones(5);
+//        c.setComicionMensual(2);
+//        c.setNumeroRetiros(5);
+//        c.setTasaAnual(12);
+//        c.extroctoMensual();
+//        c.imprimir();
+//
+        
+       CuentaAhorro Ca = new CuentaAhorro(true, 1000009, 0, 0, 0, 0);
+        for (int i = 0; i < 5; i++) {
+            Ca.comprobarCuenta();
+            Ca.retiro(1800);
+            Ca.consigna(i);
+           Ca.imprimir();
+       }
+       CuentaCorriente Cc = new CuentaCorriente(0, 1234560, 0, 0, 0, 0);
+       Cc.retiro(13000);
+       Cc.extroctoMensual();
+      Cc.imprimir();
     }
-
 }

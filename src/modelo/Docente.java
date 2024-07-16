@@ -15,16 +15,18 @@ public class Docente extends Personas {
     private String titulo;
     private String registroSenescyt;
     private String escalaSalarial;
+   private int idPersonas;
 
     public Docente() {
     }
 
-    public Docente(int idDocente, String especilizacion, String titulo, String registroSenescyt, String escalaSalarial) {
+    public Docente(int idDocente, String especilizacion, String titulo, String registroSenescyt, String escalaSalarial,int idPersonas) {
         this.idDocente = idDocente;
         this.especilizacion = especilizacion;
         this.titulo = titulo;
         this.registroSenescyt = registroSenescyt;
         this.escalaSalarial = escalaSalarial;
+        this.idPersonas=idPersonas;
     }
 
     public Docente(int idDocente, String especilizacion, String titulo, String registroSenescyt, String escalaSalarial, int idPersonas, String nombre, String apellido, String cedula, String direccion, String correoElectronico, String sexo, String fechaNacimiento, int telefono, String usuario, String clave) {
@@ -34,6 +36,7 @@ public class Docente extends Personas {
         this.titulo = titulo;
         this.registroSenescyt = registroSenescyt;
         this.escalaSalarial = escalaSalarial;
+        this.idPersonas=idPersonas;
     }
 
    
@@ -78,9 +81,17 @@ public class Docente extends Personas {
         this.escalaSalarial = escalaSalarial;
     }
 
+    public int getIdPersonas() {
+        return idPersonas;
+    }
+
+    public void setIdPersonas(int idPersonas) {
+        this.idPersonas = idPersonas;
+    }
+    
+
     public String imprimir() {
-        return "--------DATOS DE DOCENTES----------\n"
-                + "Id:" + getIdPersonas() + "\n"
+        return "--------DATOS DE DOCENTES----------\n" 
                 + "NOMBRE:" + getNombre() + "\n"
                 + "APELLIDO:" + getApellido() + "\n"
                 + "CEDULA:" + getCedula() + "\n"
@@ -90,7 +101,6 @@ public class Docente extends Personas {
                 + "SEXO:" + getSexo() + "\n"
                 + "FECHA DE NACIMIENTO:" + getFechaNacimiento() + "\n"
                 +"--------DATOS DE DOCENTES----------\n"
-                + "Id DOCENTE:" + getIdDocente() + "\n"
                 + "ESPECIALIZACION:" + getEspecilizacion() + "\n"
                 + "TITULO:" + getTitulo() + "\n"
                 + "REGISTRO DE SENESCYT:" + getRegistroSenescyt() + "\n"

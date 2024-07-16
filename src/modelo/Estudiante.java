@@ -12,26 +12,27 @@ public class Estudiante extends Personas {
 
     private int idEStudiante;
     private int numeroMatriculo;
-    private String horario;
     private String jornada;
+    private int idPersonas;
 
     public Estudiante() {
     }
 
-    public Estudiante(int idEStudiante, int numeroMatriculo, String horario, String jornada) {
+    public Estudiante(int idEStudiante, int numeroMatriculo, String jornada, int idPersonas) {
         this.idEStudiante = idEStudiante;
         this.numeroMatriculo = numeroMatriculo;
-        this.horario = horario;
         this.jornada = jornada;
+        this.idPersonas = idPersonas;
     }
 
-    public Estudiante(int idEStudiante, int numeroMatriculo, String horario, String jornada, int idPersonas, String nombre, String apellido, String cedula, String direccion, String correoElectronico, String sexo, String fechaNacimiento, int telefono, String usuario, String clave) {
+    public Estudiante(int idEStudiante, int numeroMatriculo, String jornada, int idPersonas, String nombre, String apellido, String cedula, String direccion, String correoElectronico, String sexo, String fechaNacimiento, int telefono, String usuario, String clave) {
         super(idPersonas, nombre, apellido, cedula, direccion, correoElectronico, sexo, fechaNacimiento, telefono, usuario, clave);
         this.idEStudiante = idEStudiante;
         this.numeroMatriculo = numeroMatriculo;
-        this.horario = horario;
         this.jornada = jornada;
+        this.idPersonas = idPersonas;
     }
+
 
     public int getIdEStudiante() {
         return idEStudiante;
@@ -49,14 +50,6 @@ public class Estudiante extends Personas {
         this.numeroMatriculo = numeroMatriculo;
     }
 
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
-
     public String getJornada() {
         return jornada;
     }
@@ -65,12 +58,19 @@ public class Estudiante extends Personas {
         this.jornada = jornada;
     }
 
+    public int getIdPersonas() {
+        return idPersonas;
+    }
+
+    public void setIdPersonas(int idPersonas) {
+        this.idPersonas = idPersonas;
+    }
+
    
    
 
     public String imprimir() {
         return "--------DATOS DE PERSONA----------\n"
-                + "Id:" + getIdPersonas() + "\n"
                 + "NOMBRE:" + getNombre() + "\n"
                 + "APELLIDO:" + getApellido() + "\n"
                 + "CEDULA:" + getCedula() + "\n"
@@ -80,9 +80,7 @@ public class Estudiante extends Personas {
                 + "SEXO:" + getSexo() + "\n"
                 + "FECHA DE NACIMIENTO:" + getFechaNacimiento() + "\n"
                 + "--------DATOS DE ESTUDIANTE----------\n"
-                + "Id ESTUDIANTE:" + getIdEStudiante() + "\n"
                 + "NUMERO DE MATRICULA:" + getNumeroMatriculo()+ "\n"
-                + "HORARIO DE CLASES:" + getHorario() + "\n"
                 + "JORNADA:" + getJornada() + "\n";
     }
 

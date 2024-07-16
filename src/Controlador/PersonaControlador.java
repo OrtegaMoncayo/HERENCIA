@@ -24,7 +24,7 @@ public class PersonaControlador {
     ConexionBDD conexion = new ConexionBDD();
     Connection connection = (Connection) conexion.conectar();
     PreparedStatement ejecutar;
-    ResultSet rultado;
+    ResultSet resultado;
 
     //INSERTAR FILAS EN UNA TABLA
     public void crearPersona(Personas p) {
@@ -36,7 +36,7 @@ public class PersonaControlador {
                     + "'" + p.getCedula() + "','" + p.getUsuario() + "',"
                     + "'" + p.getClave() + "','" + p.getDireccion() + "',"
                     + "'" + p.getCorreoElectronico() + "','" + p.getSexo() + "',"
-                    + "'" + p.getFechaNacimiento() + "',+" + p.getTelefono() + ");";
+                    + "'" + p.getFechaNacimiento() + "'," + p.getTelefono() + ");";
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             int res = ejecutar.executeUpdate();
             if (res > 0) {
@@ -50,6 +50,25 @@ public class PersonaControlador {
         } catch (Exception e) {
             System.out.println("ERROR" + e);
         }
+    }
+
+    public int buscarIdPersona(String cedula) {
+        try {
+            String consultaSQL = "select idpersona from persona where cedula='" + cedula + "';";
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            resultado = ejecutar.executeQuery();
+            if (resultado.next()) {
+                int idPersonas = resultado.getInt("idPersona");
+                return idPersonas;
+            } else {
+                System.out.println("ingrese una cedula valida ");
+            }
+
+        } catch (Exception e) {
+            System.out.println("COMUNIQUESE CON EL ALMINISTRADOR DEL SISTEMA PARA EL SISTEMA" + e);
+        }
+        return 0;
+
     }
 
 }
