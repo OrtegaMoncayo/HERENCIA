@@ -73,7 +73,8 @@ public class Main2 {
                         + "1.Crear Persona\n"
                         + "2.Crear Estudiante\n"
                         + "3.Crear Administrador\n"
-                        + "4.Crear Docente\n");
+                        + "4.Crear Docente\n"
+                        + "5.Lista Persona\n");
                 int mp = es.nextInt();
                 if (mp == 1) {
                     System.out.println("Ingrese los siguientes datos informativos");
@@ -180,11 +181,11 @@ public class Main2 {
                     System.out.println("-------------------" + idPersona);
 
                     Administrativo ad = new Administrativo();
-                    System.out.println("Ingrese el número de matrícula:");
+                    System.out.println("Ingrese el cargo:");
                     ad.setCargo(es.next());
-                    System.out.println("Ingrese el número de matrícula:");
+                    System.out.println("Ingrese el Area de trabajo:");
                     ad.setArea(es.next());
-                    ad.getIdPersonas();
+                    ad.setIdPersonas(idPersona);
 
                     AdministrativoControlador adC = new AdministrativoControlador();
                     adC.crearAdministrativo(ad);
@@ -224,19 +225,43 @@ public class Main2 {
                     System.out.println("-------------------" + idPersona);
 
                     Docente d = new Docente();
-                    System.out.println("Ingrese su Nombre:");
+                    System.out.println("Ingrese Especilizacion:");
                     d.setEspecilizacion(es.next());
-                    System.out.println("Ingrese su Nombre:");
+                    System.out.println("Ingrese tutilo:");
                     d.setTitulo(es.next());
-                    System.out.println("Ingrese su Nombre:");
+                    System.out.println("Ingrese RegistroSenecyt:");
                     d.setRegistroSenescyt(es.next());
-                    System.out.println("Ingrese su Nombre:");
+                    System.out.println("Ingrese Escala Salarial:");
                     d.setEscalaSalarial(es.next());
-                    d.getIdPersonas();
+                    d.setIdPersonas(idPersona);
 
                     DocenteControlador dC = new DocenteControlador();
                     dC.crearDocente(d);
 
+                }else if(mp==5){
+                    PersonaControlador pC=new PersonaControlador();
+                    ArrayList<Personas> listaPersonas=pC.listaPersona();
+                    for(Personas l:listaPersonas){
+                    System.out.println(l.imprimir());
+                }
+                }else if(mp==6){
+                    System.out.println("");
+                    String cedula=es.next();
+                    PersonaControlador pC=new PersonaControlador();
+                    Personas p=pC.buscarDatosPersona(cedula);
+                    System.out.println(p.imprimir());
+                    
+                    System.out.println("");
+                    
+                    
+                    
+                    
+                }else if (mp==7){
+                    System.out.println("");
+                    String cedula=es.next();
+                    PersonaControlador pC=new PersonaControlador();
+                    pC.eliminarPersona(cedula);
+                    
                 }
 
             }

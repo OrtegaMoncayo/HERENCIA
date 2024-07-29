@@ -9,6 +9,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import controlador.ConexionBDD;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import modelo.Personas;
 
 /**
@@ -68,6 +69,100 @@ public class PersonaControlador {
             System.out.println("COMUNIQUESE CON EL ALMINISTRADOR DEL SISTEMA PARA EL SISTEMA" + e);
         }
         return 0;
+
+    }
+ public Personas buscarDatosPersona(String cedula){
+        Personas p=new Personas();   
+        try {
+            String consultaSQL="SELECT nombres,apellidos,cedula,usuario FROM persona WHERE cedula='"+cedula+"';";
+            ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
+            resultado=ejecutar.executeQuery();
+            if(resultado.next()){
+                             
+                p.setNombre(resultado.getString("nombres"));
+                p.setApellido(resultado.getString("apellidos"));
+                p.setCedula(resultado.getString("cedula"));
+                p.setUsuario(resultado.getString("usuario"));
+                p.imprimir();
+                resultado.close();
+                return p;
+            }else{
+                System.out.println("Ingrese una cédula válida");
+                resultado.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Comuníquese con el administrador"+e);
+        }
+        return p;
+    
+    }
+
+    public ArrayList<Personas> listaPersona() {
+        ArrayList<Personas> listaPersona = new ArrayList<>();
+
+        try {
+            String consultaSQL = "select persona.cedula,\n"
+                    + "persona.nombres,\n"
+                    + "persona.apellidos,\n"
+                    + "cliente.carnetPromocion\n"
+                    + "FROM cliente\n"
+                    + "JOIN persona ON cliente.idpersona=persona.idpersona;";
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            resultado = ejecutar.executeQuery();
+            while (resultado.next()) {
+                Personas p = new Personas();
+                p.setCedula(resultado.getString("cedula"));
+                p.setNombre(resultado.getString("nombres"));
+                p.setApellido(resultado.getString("apellidos"));
+                p.setUsuario(resultado.getString("carnetPromocion"));
+                listaPersona.add(p);
+
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener la lista de clientes: " + e);
+
+        }
+
+        return listaPersona;
+    }
+    
+   public void actualizarPersonas(Personas p,String cedula){
+        try {
+            String consultaSQL=" update persona set cedula='?',nombres='?' where cedula='?';";
+            ejecutar=(PreparedStatement)connection.prepareCall(consultaSQL);
+            ejecutar.setString(1, p.getCedula());
+            ejecutar.setString(2, p.getNombre());
+            ejecutar.setString(3, cedula);
+            int res=ejecutar.executeUpdate();
+            if(res>0){
+                System.out.println("Actualización exitosa");
+                resultado.close();
+                    
+            }else{
+                System.out.println("Revise los datos a actualizar");
+                resultado.close();
+            }       
+        } catch (Exception e) {
+            System.out.println(""+e);
+        }
+    
+    
+    }
+     public void eliminarPersona(String cedula) {
+        try {
+            String consultaSQL = "DELETE FROM persona WHERE cedula='" + cedula + "'";
+            ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
+            int res = ejecutar.executeUpdate();
+            if (res > 0) {
+                System.out.println("LA PERSONA HA SIDO ELIMINADA");
+                ejecutar.close();
+            } else {
+                System.out.println("ERROR AL ELIMINAR PERSONA");
+                resultado.close();
+            }
+        } catch (Exception e) {
+            System.out.println("CORRA EL FIN DEL MUNDO ESTA CERCA");
+        }
 
     }
 

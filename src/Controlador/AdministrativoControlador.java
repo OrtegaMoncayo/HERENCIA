@@ -33,7 +33,7 @@ public class AdministrativoControlador {
             ejecutar = (PreparedStatement) connection.prepareCall(consultaSQL);
             int res = ejecutar.executeUpdate();
             if (res > 0) {
-                System.out.println("EL ESTUDIANTE FUE CREADA CON ÉXITO");
+                System.out.println("EL ADMINISTRADOR FUE CREADA CON ÉXITO");
                 ejecutar.close();
             } else {
                 System.out.println("FAVOR INGRESE CORRECTAMENTE LOS DATOS");
